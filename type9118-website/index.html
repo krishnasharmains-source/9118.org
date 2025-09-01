@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Type9118 — Secure Support Server</title>
+  <meta name="description" content="Join or create secure support sessions with one-time codes. No installs. End-to-end privacy.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/styles.css" as="style">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container row between center">
+      <a class="brand row center gap" href="#">
+        <span class="logo">T</span>
+        <span class="brand-text">
+          <span class="mini">Type</span>
+          <span class="name">9118</span>
+        </span>
+      </a>
+      <nav class="nav hide-sm">
+        <a href="#features">Features</a>
+        <a href="#sessions">Sessions</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button id="btnCreate" class="btn btn-accent">Create Session</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="blob"></div>
+      <div class="container grid-2 gap-xl">
+        <div>
+          <span class="badge">
+            <span class="dot"></span> Encrypted tunnel (demo)
+          </span>
+          <h1>Join a secure support session</h1>
+          <p class="lead">
+            One‑time codes connect you to a trusted helper. No installs. No sign‑ups. Just
+            private screen‑sharing and chat.
+          </p>
+
+          <div class="panel">
+            <label for="code" class="label">Secure Code</label>
+            <div class="row gap">
+              <input id="code" placeholder="e.g. 9X4J7QK2" maxlength="10" autocomplete="off">
+              <button id="btnJoin" class="btn">Join Session</button>
+            </div>
+            <p id="notice" class="notice"></p>
+            <div class="row gap-sm mt-sm text-dim">
+              <button id="btnSample" class="link">Try a sample code</button>
+              <span>•</span>
+              <a class="link" href="#faq">Is it safe?</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-stack">
+            <div class="card">
+              <p class="kicker">Session details</p>
+              <div class="grid-2 mt-sm text-sm">
+                <div><p class="muted">Transport</p><p class="strong">TLS 1.3</p></div>
+                <div><p class="muted">Cipher</p><p class="strong">AES‑256‑GCM</p></div>
+                <div><p class="muted">ECDHE</p><p class="strong">X25519</p></div>
+                <div><p class="muted">Integrity</p><p class="strong">SHA‑256</p></div>
+              </div>
+            </div>
+            <div class="card">
+              <p class="kicker">Live metrics</p>
+              <div class="grid-3 mt-sm text-sm">
+                <div><p class="muted">Latency</p><p class="strong">12 ms</p></div>
+                <div><p class="muted">Jitter</p><p class="strong">2 ms</p></div>
+                <div><p class="muted">Packet Loss</p><p class="strong">0.0%</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sessions" class="container section">
+      <div class="row between center">
+        <div>
+          <h2>Public Sessions</h2>
+          <p class="text-dim">Join a public support room shared by a helper.</p>
+        </div>
+        <button id="btnClear" class="link">Clear</button>
+      </div>
+      <div id="sessionsGrid" class="grid-responsive"></div>
+      <div id="emptyState" class="emptystate">
+        <p>No available sessions</p>
+        <p class="text-dim small">Ask a helper to share a public room or click “Create Session”.</p>
+      </div>
+    </section>
+
+    <section id="features" class="container section">
+      <h2>Why choose Type9118</h2>
+      <div class="grid-3 gap">
+        <article class="feature">
+          <h3>No installs</h3>
+          <p>Runs in the browser. Light, fast, private.</p>
+        </article>
+        <article class="feature">
+          <h3>One‑time access codes</h3>
+          <p>Codes expire automatically. You stay in control.</p>
+        </article>
+        <article class="feature">
+          <h3>End‑to‑end</h3>
+          <p>Peer‑to‑peer media with modern cryptography.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq" class="container section">
+      <h2>FAQ</h2>
+      <details class="faq">
+        <summary>Is my connection encrypted?</summary>
+        <p>Yes. This demo shows typical parameters like TLS 1.3 and AES‑256‑GCM. Replace with your real stack.</p>
+      </details>
+      <details class="faq">
+        <summary>Do I need an account?</summary>
+        <p>No account is required to join a session via code. Hosts may sign in in the full app.</p>
+      </details>
+      <details class="faq">
+        <summary>How do I host?</summary>
+        <p>Click “Create Session” to generate a code. Wire this button to your backend API.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container row between center">
+      <p>© <span id="year"></span> Type9118</p>
+      <div class="row gap">
+        <a href="#" class="link">Privacy</a>
+        <a href="#" class="link">Terms</a>
+        <a href="#" class="link">Status</a>
+      </div>
+    </div>
+  </footer>
+
+  <dialog id="modal" class="modal">
+    <form method="dialog" class="modal-card">
+      <h3>Session created</h3>
+      <p class="text-dim">Share this one‑time code with your participant.</p>
+      <p id="newCode" class="mono big"></p>
+      <div class="row gap mt">
+        <button id="btnCopy" class="btn">Copy code</button>
+        <button value="close" class="btn btn-ghost">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
